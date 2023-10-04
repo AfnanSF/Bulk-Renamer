@@ -1,39 +1,32 @@
-// const obj = {
-//     name: "Afnan",
-//     proffession: "Full Stack Developer",
-//     Skill: "Extreme"
-// };
+const fs = require('fs');
+const replaceThis = "harry";
+const replaceWith = "afnan";
+const preview = true;
+try {
+    fs.readdir(".", (err, data) => {
 
-//  const {name, proffession} = obj;
+        for (let i = 0; i < data.length; i++) {
+            const item = data[i];
+            let newfile = "data/" + item.replaceAll(replaceThis, replaceWith);
 
-// console.log(name, proffession);
+            if (!preview) {
+                fs.rename("data/" + item, newfile, () => {
+                    console.log("Rename Success");
+                })
+            }
+            else {
 
-// const arr = [1, 2, 3, "afnan"];
-// const objArr = { ...arr };
-// console.log(objArr);
+                if ("data/" + item !== newfile) {
 
-// const sum = (v1, v2, v3) => {
-//     return v1 + v2 + v3;
-// }
-
-// const ans = sum(...arr);
-// console.log(ans);
-
-// console.log({ ...obj, name: "John Carmack", proffession: "Game Developer" });
-let messsage = "Good Global"
-function hello1() {
-    let messsage = "Good morning"
-
-    // let messsage = "Good Afternoon"
-    console.log("Hello1 " + messsage)
-
-    console.log(messsage);
-    let c = function hello2() {
-        console.log("I am c" + messsage)
-    }
-    return c;
+                    console.log("/data" + item + " will be renamed to " + newfile);
+                }
+            }
+        }
+    })
+} catch (err) {
+    console.error(err);
 }
-// hello1();
-c = hello1();
-c()
-// console.log(messsage);
+
+
+
+
